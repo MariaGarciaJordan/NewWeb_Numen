@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-iconify";
+---
+
+<section class="w-full bg-neutral-950 text-white py-16">
+  <div class="text-center px-4 sm:px-6 lg:px-12 mb-16">
+    <h3 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+      Our Core Principles
+    </h3>
+
+    <p class="text-base sm:text-lg lg:text-xl max-w-3xl mx-auto text-neutral-300">
+      These principles guide every decision we make.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 px-4 sm:px-6 lg:px-12 max-w-6xl mx-auto">
+    <div class="flex flex-col items-center text-center">
+      <Icon name="mdi:palette" class="h-20 w-20 mb-6" />
+      <h4 class="text-2xl font-semibold mb-2">Craft</h4>
+      <p class="text-neutral-400">Art as a driver</p>
+    </div>
+
+    <div class="flex flex-col items-center text-center">
+      <Icon name="mdi:gamepad-variant" class="h-20 w-20 mb-6" />
+      <h4 class="text-2xl font-semibold mb-2">Learn</h4>
+      <p class="text-neutral-400">Humans play to learn</p>
+    </div>
+
+    <div class="flex flex-col items-center text-center">
+      <Icon name="mdi:content-copy" class="h-20 w-20 mb-6" />
+      <h4 class="text-2xl font-semibold mb-2">Remix</h4>
+      <p class="text-neutral-400">
+        Feel free to copy it and make it better
+      </p>
+    </div>
+  </div>
+</section>

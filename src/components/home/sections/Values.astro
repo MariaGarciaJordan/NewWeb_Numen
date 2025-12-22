@@ -1,0 +1,68 @@
+---
+type Feature = {
+  title: string;
+  description: string;
+};
+
+const features: Feature[] = [
+  {
+    title: "Cosmic Harmony",
+    description:
+      "Numinians serve and balance life, guided by actions with purpose, ensuring prosperity for all.",
+  },
+  {
+    title: "Equable",
+    description:
+      "For Numinians fairness shapes every decision, fostering reality, unity, and constructive honesty.",
+  },
+  {
+    title: "Curiosity",
+    description:
+      "Numinians like to be selfaware, actively inferring to minimize the surprise, exploring beyond the familiar territories, we learn by doing.",
+  },
+  {
+    title: "Healthy Enviroments",
+    description:
+      "Numinians forge enduring relations and creations, nurturing the public good; Sustainability guides our steps.",
+  },
+];
+---
+<section class="w-full bg-white py-20">
+  <div class="mx-auto max-w-6xl px-6 text-center">
+    <h3 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+      Values and Principles
+    </h3>
+
+    <p class="mx-auto mt-6 max-w-3xl text-base text-slate-600 sm:text-lg md:text-xl lg:text-2xl">
+      We champion this values, to craft a gaming experience that's not only
+      sustainable but deeply connects and resonates with our users.
+    </p>
+
+    <div class="mt-16 grid gap-8 sm:grid-cols-2">
+      {features.map((item: Feature) => (
+        <div class="flex items-start gap-4 p-6 transition-transform duration-300 hover:scale-[1.02]">
+          <div class="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-black sm:h-14 sm:w-14">
+            <svg
+              class="h-8 w-8 text-white sm:h-10 sm:w-10"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <circle cx="12" cy="12" r="9" />
+            </svg>
+          </div>
+
+          <div class="text-left">
+            <h4 class="text-lg font-semibold sm:text-xl">
+              {item.title}
+            </h4>
+            <p class="mt-2 text-sm leading-relaxed text-slate-500 sm:text-base">
+              {item.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

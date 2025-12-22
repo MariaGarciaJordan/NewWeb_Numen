@@ -1,0 +1,42 @@
+---
+import { Picture } from "astro:assets";
+import heroImage from "../../../assets/home/numinia/numinia-hero.jpg";
+---
+
+<section class="w-full bg-neutral-950 text-white">
+  <!-- Text content -->
+  <div class="min-h-[70vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-12 text-center">
+    <h2 class="mb-6 text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight max-w-5xl">
+      Numinia
+    </h2>
+
+    <h3 class="mb-8 text-lg sm:text-xl md:text-2xl lg:text-3xl italic">
+      A Template to Reimagine Organizations
+    </h3>
+
+    <p class="mb-10 max-w-4xl text-base sm:text-lg md:text-xl lg:text-2xl italic">
+      At the beginning of the digital revolution the five great attractors are
+      about to change everything. We live with an obsolete system inherited from
+      the second industrial revolution. The uncertainty is overwhelming.
+      We rebuild Numinia for a better future.
+    </p>
+
+    <a
+      href="https://v2.oncyber.io/numen_games"
+      target="_blank"
+      rel="noopener"
+      class="inline-block px-8 py-3 rounded-lg bg-white text-black text-lg lg:text-2xl font-semibold transition-transform hover:scale-105 hover:bg-purple-100"
+    >
+      Play
+    </a>
+  </div>
+
+  <!-- Image -->
+  <div class="w-full px-4 sm:px-6 lg:px-12 pb-24">
+    <Picture
+      src={heroImage}
+      alt="Numinia immersive experience"
+      class="w-full h-auto rounded-lg shadow-lg object-cover"
+    />
+  </div>
+</section>

@@ -1,0 +1,35 @@
+---
+import GithubImage from "@assets/github-mark.png";
+import GithubLogoImage from "@assets/GitHub_Logo.png";
+---
+<section class="w-full bg-white py-20">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <h2 class="mb-5 text-4xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
+      Legal By Design
+    </h2>
+
+    <p class="text-lg md:text-xl lg:text-2xl md:pt-12">
+      We are 100% Open Source
+    </p>
+
+    <a
+      href="https://github.com/numengames"
+      target="_blank"
+      rel="noopener"
+      class="mt-10 flex items-center justify-center gap-6"
+    >
+      <img
+        src={GithubLogoImage.src}
+        alt="GitHub Logo"
+        class="w-full max-w-[150px] object-cover lg:max-w-[120px]"
+        loading="lazy"
+      />
+      <img
+        src={GithubImage.src}
+        alt="GitHub Icon"
+        class="w-full max-w-[50px] object-cover lg:max-w-[40px]"
+        loading="lazy"
+      />
+    </a>
+  </div>
+</section>
