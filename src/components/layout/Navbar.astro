@@ -1,45 +1,27 @@
-<nav class="w-full border-b border-neutral-200 bg-white">
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-    <a
-      href="/"
-      class="text-base font-semibold tracking-tight text-neutral-900 hover:opacity-80"
-    >
-      NUMEN
-    </a>
+---
+const links = [
+  { href: "/pricing", label: "Pricing" },
+  { href: "/services", label: "Services" },
+  { href: "/team", label: "Team" },
+  { href: "/contact", label: "Contact" },
+];
+---
 
-    <ul class="flex items-center gap-8 text-sm font-medium text-neutral-700">
-      <li>
-        <a
-          href="/pricing"
-          class="transition-colors hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-        >
-          Pricing
-        </a>
-      </li>
-      <li>
-        <a
-          href="/services"
-          class="transition-colors hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-        >
-          Services
-        </a>
-      </li>
-      <li>
-        <a
-          href="/team"
-          class="transition-colors hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-        >
-          Team
-        </a>
-      </li>
-      <li>
-        <a
-          href="/contact"
-          class="transition-colors hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-        >
-          Contact
-        </a>
-      </li>
+<header class="w-full border-b border-white/10 bg-neutral-950/80 backdrop-blur">
+  <nav class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+    <a href="/" class="font-semibold tracking-wide">NUMEN</a>
+
+    <ul class="flex items-center gap-6 text-sm sm:text-base">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="text-neutral-200 hover:text-white underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
+          >
+            {l.label}
+          </a>
+        </li>
+      ))}
     </ul>
-  </div>
-</nav>
+  </nav>
+</header>
