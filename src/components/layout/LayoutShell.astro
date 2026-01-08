@@ -1,10 +1,12 @@
 ---
-import "@styles/global.css";
+import "../../styles/global.css";
+
 import Navbar from "./Navbar.astro";
 import Footer from "./Footer.astro";
 
 const { title = "Numen Games", description = "" } = Astro.props;
 ---
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -13,9 +15,9 @@ const { title = "Numen Games", description = "" } = Astro.props;
     {description ? <meta name="description" content={description} /> : null}
   </head>
 
-  <body class="min-h-screen bg-white text-neutral-900 antialiased">
+  <body class="bg-neutral-950 text-white">
     <Navbar />
-    <main class="flex flex-col">
+    <main class="min-h-screen">
       <slot />
     </main>
     <Footer />
