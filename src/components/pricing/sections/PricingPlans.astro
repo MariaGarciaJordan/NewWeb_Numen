@@ -1,0 +1,70 @@
+---
+const plans = [
+  {
+    title: "Starter 3D Web",
+    price: "€4,000 – €8,000",
+    features: [
+      "Navigable mini-universe",
+      "Basic 2D to 3D conversion",
+      "Adapted visual identity",
+      "Fast delivery",
+      "Ideal for testing 3D experiences",
+    ],
+  },
+  {
+    title: "Custom 3D Experience",
+    price: "€8,000 – €20,000",
+    features: [
+      "100% custom design",
+      "Narrative, art and interaction",
+      "Multimedia integration",
+      "Fully immersive experience",
+      "Ideal for brand differentiation",
+    ],
+  },
+  {
+    title: "Full Metaverse Integration",
+    price: "€20,000 – €50,000",
+    features: [
+      "Persistent and scalable world",
+      "Gamification systems",
+      "Events, rooms and missions",
+      "Custom architecture and identity",
+      "Ideal for owning a digital world",
+    ],
+  },
+];
+---
+<section class="w-full bg-neutral-950 py-24 text-white">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
+      {plans.map((plan) => (
+        <div class="flex flex-col justify-between rounded-xl border border-neutral-800 bg-neutral-900 p-8 transition hover:border-neutral-600">
+          <div>
+            <h3 class="mb-2 text-2xl font-semibold">{plan.title}</h3>
+
+            <p class="mb-6 text-3xl font-light text-neutral-300">
+              {plan.price}
+            </p>
+
+            <ul class="mb-10 space-y-3 text-neutral-400">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-2">
+                  <span class="text-neutral-500">✓</span>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <a
+            href="/contact"
+            class="mt-auto inline-flex items-center justify-center rounded-lg border border-neutral-700 px-6 py-3 text-base font-medium transition hover:bg-neutral-800"
+          >
+            Contact
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

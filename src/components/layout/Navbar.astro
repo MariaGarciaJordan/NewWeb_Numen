@@ -1,10 +1,27 @@
-<nav class="w-full px-6 py-4 flex justify-between items-center bg-neutral-900">
-  <a href="/" class="font-bold text-xl">NUMEN</a>
+---
+const links = [
+  { href: "/pricing", label: "Pricing" },
+  { href: "/services", label: "Services" },
+  { href: "/team", label: "Team" },
+  { href: "/contact", label: "Contact" },
+];
+---
 
-  <ul class="flex gap-6 text-sm">
-    <li><a href="/pricing">Pricing</a></li>
-    <li><a href="/services">Services</a></li>
-    <li><a href="/team">Team</a></li>
-    <li><a href="/contact">Contact</a></li>
-  </ul>
-</nav>
+<header class="w-full border-b border-white/10 bg-neutral-950/80 backdrop-blur">
+  <nav class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+    <a href="/" class="font-semibold tracking-wide">NUMEN</a>
+
+    <ul class="flex items-center gap-6 text-sm sm:text-base">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="text-neutral-200 hover:text-white underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
+          >
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
