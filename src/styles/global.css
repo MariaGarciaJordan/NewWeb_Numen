@@ -1,12 +1,81 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import "tailwindcss";
 
+/* Fonts */
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/Geist-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
 
-/* =========================
-   Base document setup
-========================= */
+@font-face {
+  font-family: "IBMPlexMono";
+  src: url("/fonts/IBMPlexMono/IBMPlexMono-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBMPlexMono";
+  src: url("/fonts/IBMPlexMono/IBMPlexMono-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBMPlexMono";
+  src: url("/fonts/IBMPlexMono/IBMPlexMono-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBMPlexMono";
+  src: url("/fonts/IBMPlexMono/IBMPlexMono-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Base */
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -14,67 +83,60 @@ html {
 }
 
 body {
-  background-color: white;
-  color: rgb(23 23 23); /* neutral-900 */
+  font-family: Geist, serif;
+  font-weight: 400;
+
+  /* light */
+  background-color: #F9F3E8;
+  color: #212123;
+
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-duration: 300ms;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-
-  /* Baseline tipográfico */
-  font-size: 16px;
-  line-height: 1.55;
 }
 
-/* =========================
-   Typography defaults
-========================= */
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: inherit;
+.dark body {
+  /* dark */
+  background-color: #212123;
+  color: #F9EBDC;
 }
 
-h1,
-h2 {
-  line-height: 1.1;
+/* Components (CSS normal, v4 safe) */
+.hero-title {
+  font-size: 3.75rem;
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+@media (min-width: 1536px) {
+  .hero-title {
+    font-size: 4.5rem;
+    line-height: 1.25;
+  }
 }
 
-h3,
-h4,
-h5 {
-  line-height: 1.2;
+.section-title {
+  font-size: 2.25rem;
+  line-height: 1.25;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+@media (min-width: 1536px) {
+  .section-title {
+    font-size: 3rem;
+    line-height: 1.25;
+  }
 }
 
-p {
-  color: rgb(64 64 64); /* neutral-700 */
+.card-shadow {
+  box-shadow: 0 0 1.25rem 0 rgba(243, 80, 89, 0.5);
 }
 
-/* Links: mantener estilo sobrio, mejor legibilidad */
-a {
-  color: inherit;
-  text-decoration-thickness: from-font;
-  text-underline-offset: 0.18em;
-}
-
-/* Focus visible accesible sin imponer estilos visuales agresivos */
-:focus-visible {
-  outline: 2px solid rgb(59 130 246); /* blue-500 */
-  outline-offset: 2px;
-}
-
-::selection {
-  background: rgb(229 229 229); /* neutral-200 */
-}
-
-/* =========================
-   Layout rhythm helpers
-========================= */
-section {
-  scroll-margin-top: 6rem;
+.text-gradient {
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to right, #F35059, #A6DAD5);
 }
