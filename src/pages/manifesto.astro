@@ -1,0 +1,161 @@
+---
+import LayoutShell from "../components/layout/LayoutShell.astro";
+
+const page = {
+  title: "Numen Games - Manifesto",
+  header: {
+    bracketedContent: "MANIFESTO",
+    mainImg: "/assets/hero-culture.webp",
+    title: "Dream without limits",
+  },
+  sections: [
+    {
+      content: [
+        "Numen Games believes in the ability of humans to learn through play and the power of games to enrich and improve the quality of human relationships, as well as their inherent necessity to be organized in groups.",
+        "Numen Games will focus on the capacity of every individual to make a change through curiosity and creativity, leveling up relations within organizations. We are building a game to work better.",
+        "In order for change to take place we believe that change in organizations is necessary. We believe that the inheritance of the Second Industrial Revolution organizations has come to an end and we need to open a new path for digital organizations for humans to thrive. Though we honor what has been learnt in the past, we believe that things can be done differently, putting the focus on the human being and the construction of fairer, stronger relations.",
+      ],
+      bullets: [
+        "Numen Games believes that humans play to learn.",
+        "Numen Games understands art as a driver.",
+        "Numen Games supports remix culture.",
+      ],
+    },
+    {
+      title: "Strategy Plan",
+      content: [
+        "Numen Games aim to create a decentralized, living internet where players engage in a gamified structural framework that blends education, exploration, and creative collaboration. Organized into distinct districts aligned with specialized factions, Numinia leverages the power of decentralized knowledge and continuous innovation to keep the experience fresh and engaging. This strategy fosters a community where players are not just participants but co-creators of an ever-evolving narrative, ensuring that Numinia remains a cutting-edge and inclusive space for learning and adventure.",
+      ],
+    },
+    {
+      title: "Pillars",
+      content: ["This is what we consider in every decision:"],
+      bullets: [
+        "Art as a driver.",
+        "Humans play to learn.",
+        "Feel free to copy it and make it better.",
+      ],
+    },
+    {
+      title: "Values and Principles",
+      content: [
+        "We champion this values, to craft a gaming experience that's not only sustainable but deeply connects and resonates with our users.",
+      ],
+      bullets: [
+        "Numinians serve and balance life, guided by actions with purpose, ensuring prosperity for all.",
+        "For Numinians fairness shapes every decision, fostering reality, unity, and constructive honesty.",
+        "Numinians like to be selfaware, actively inferring to minimize the surprise, exploring beyond the familiar territories, we learn by doing.",
+        "Numinians forge enduring relations and creations, nurturing the public good; Sustainability guides our steps.",
+      ],
+    },
+    {
+      title: "Consciousness",
+      content: [
+        "We are convinced that our generation has the duty to propose new models for organizations, more balanced, closer to the human being. We want a better world for those who come after us. We wouldn't forgive ourselves for not trying. Capitalism with heart has a place in the future, prosperity will be the outcome of a happier, more balanced and fairer society.",
+      ],
+    },
+    {
+      title: "Legacy",
+      content: [
+        "In our epitaph you could read, they dreamed and experimented life, they imagined and took action. They were part of the fight to change the model, they did not let us alone, they built a game with which to create a better world.",
+      ],
+    },
+  ],
+};
+
+const { title, header, sections } = page;
+---
+
+<LayoutShell title={title} description="Numen Games manifesto">
+  <section class="px-4 lg:px-10 pt-28 lg:pt-32">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+        <div>
+          <p class="font-IBMPlexMono text-xs tracking-[0.25em] text-primary-beige/60">
+            [{header.bracketedContent}]
+          </p>
+
+          <h1 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-medium tracking-[-0.03em] text-primary-beige">
+            {header.title}
+          </h1>
+
+          <p class="mt-6 text-primary-beige/70 leading-relaxed">
+            Numen Games manifesto and principles.
+          </p>
+        </div>
+
+        <div class="w-full">
+          <div class="relative overflow-hidden rounded-lg border border-white/10 bg-white/5">
+            <img
+              src={header.mainImg}
+              alt="Manifesto hero"
+              class="w-full h-[260px] sm:h-[340px] lg:h-[420px] object-cover"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 lg:mt-16 border-t border-white/10"></div>
+    </div>
+  </section>
+
+  <section class="px-4 lg:px-10 py-14 lg:py-18">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-8">
+          {sections.map((s) => (
+            <article class="py-10 border-b border-white/10 last:border-b-0">
+              {s.title ? (
+                <h2 class="text-2xl sm:text-3xl font-medium tracking-[-0.02em] text-primary-beige">
+                  {s.title}
+                </h2>
+              ) : null}
+
+              <div class={s.title ? "mt-5 space-y-5" : "space-y-5"}>
+                {s.content?.map((p) => (
+                  <p class="text-primary-beige/70 leading-relaxed">{p}</p>
+                ))}
+              </div>
+
+              {s.bullets?.length ? (
+                <ul class="mt-6 space-y-3 list-disc pl-5 text-primary-beige/70">
+                  {s.bullets.map((b) => (
+                    <li class="leading-relaxed">{b}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </article>
+          ))}
+        </div>
+
+        <aside class="lg:col-span-4">
+          <div class="sticky top-28 rounded-lg border border-white/10 bg-white/5 p-6">
+            <p class="font-IBMPlexMono text-xs tracking-[0.25em] text-primary-beige/60">
+              [INDEX]
+            </p>
+
+            <ul class="mt-4 space-y-2">
+              {sections
+                .filter((s) => s.title)
+                .map((s) => (
+                  <li>
+                    <span class="text-sm text-primary-beige/70">{s.title}</span>
+                  </li>
+                ))}
+            </ul>
+
+            <div class="mt-6 pt-6 border-t border-white/10">
+              <a
+                href="/contact"
+                class="inline-flex items-center justify-center w-full rounded-md bg-primary-coralRed px-4 py-2 text-sm font-medium text-white hover:bg-primary-darkRed transition-colors"
+              >
+                Talk to us
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</LayoutShell>
