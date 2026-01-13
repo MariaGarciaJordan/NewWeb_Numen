@@ -1,0 +1,33 @@
+---
+import LayoutShell from "../../components/layout/LayoutShell.astro";
+
+type Props = {
+  title: string;
+  description?: string;
+  eyebrow?: string;
+};
+
+const {
+  title,
+  description = "",
+  eyebrow = "[BLOG]",
+} = Astro.props as Props;
+---
+
+<LayoutShell title={title} description={description}>
+  <section class="px-4 lg:px-10 pt-28 lg:pt-32 pb-14 lg:pb-16">
+    <div class="mx-auto max-w-6xl">
+      <p class="font-IBMPlexMono text-xs tracking-[0.25em] text-primary-beige/60">
+        {eyebrow}
+      </p>
+
+      <div class="mt-4">
+        <slot name="header" />
+      </div>
+
+      <div class="mt-10 lg:mt-12">
+        <slot />
+      </div>
+    </div>
+  </section>
+</LayoutShell>

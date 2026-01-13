@@ -1,27 +1,28 @@
 ---
-import LayoutShell from "../../components/layout/LayoutShell.astro";
+import BlogLayout from "./BlogLayout.astro";
 
-const title = "Numen Games - Blog";
+const title = "Numen Games · Blog";
 ---
 
-<LayoutShell title={title} description="Numen Games blog">
-  <section class="px-4 lg:px-10 pt-28 lg:pt-32 pb-16">
-    <div class="mx-auto max-w-6xl">
-      <p class="font-IBMPlexMono text-xs tracking-[0.25em] text-primary-beige/60">[BLOG]</p>
+<BlogLayout title={title} description="Numen Games blog">
+  <Fragment slot="header">
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-[-0.03em]">
+      Blog
+    </h1>
 
-      <h1 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-medium tracking-[-0.03em] text-primary-beige">
-        Blog
-      </h1>
+    <p class="mt-6 text-primary-beige/70 leading-relaxed max-w-2xl">
+      Coming soon.
+    </p>
+  </Fragment>
 
-      <p class="mt-6 text-primary-beige/70 leading-relaxed max-w-2xl">
-        Coming soon.
+  <div class="rounded-lg border border-white/10 bg-primary-panther/20 p-6">
+    <div class="flex flex-col gap-3">
+      <p class="text-primary-beige/70">
+        No posts yet.
       </p>
-
-      <div class="mt-10 rounded-lg border border-white/10 bg-white/5 p-6">
-        <p class="text-primary-beige/70">
-          This section is intentionally empty for now. The structure is in place.
-        </p>
-      </div>
+      <p class="text-sm text-primary-beige/50">
+        This page is intentionally a stub. The layout is ready for future content.
+      </p>
     </div>
-  </section>
-</LayoutShell>
+  </div>
+</BlogLayout>
