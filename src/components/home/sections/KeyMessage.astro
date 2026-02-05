@@ -1,0 +1,60 @@
+---
+export type KeyMessageProps = {
+  /** Texto pequeño superior (opcional) */
+  eyebrow?: string;
+
+  /** Título principal */
+  title: string;
+
+  /** Texto descriptivo */
+  description?: string;
+
+  /** Lista de badges / keywords */
+  badges?: string[];
+};
+
+const {
+  eyebrow,
+  title,
+  description,
+  badges = [],
+} = Astro.props;
+---
+
+<section
+  class="w-full bg-white py-16 md:py-20"
+  aria-labelledby="key-message-title"
+>
+  <div class="mx-auto max-w-5xl px-6 text-center">
+    {eyebrow && (
+      <p class="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+        {eyebrow}
+      </p>
+    )}
+
+    <h2
+      id="key-message-title"
+      class="text-3xl font-semibold leading-tight text-neutral-900 md:text-4xl"
+    >
+      {title}
+    </h2>
+
+    {description && (
+      <p class="mx-auto mt-6 max-w-3xl text-lg text-neutral-600">
+        {description}
+      </p>
+    )}
+
+    {badges.length > 0 && (
+      <ul class="mt-10 flex flex-wrap justify-center gap-3">
+        {badges.map((badge: string) => (
+          <li>
+            <span class="inline-flex items-center rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm font-medium text-neutral-700">
+              {badge}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</section>

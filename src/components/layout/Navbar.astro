@@ -1,10 +1,274 @@
-<nav class="w-full px-6 py-4 flex justify-between items-center bg-neutral-900">
-  <a href="/" class="font-bold text-xl">NUMEN</a>
+---
+import navbarDropdownUrl from "../../scripts/navbar-dropdown.ts?url";
 
-  <ul class="flex gap-6 text-sm">
-    <li><a href="/pricing">Pricing</a></li>
-    <li><a href="/services">Services</a></li>
-    <li><a href="/team">Team</a></li>
-    <li><a href="/contact">Contact</a></li>
-  </ul>
-</nav>
+const links = [
+  { href: "/pricing", label: "Pricing" },
+  { href: "/contact", label: "Contact" },
+];
+
+const pathname = Astro.url?.pathname ?? "/";
+const isActive = (href: string) =>
+  href === "/" ? pathname === "/" : pathname.startsWith(href);
+---
+
+<header class="fixed z-50 w-full mx-auto mt-4 lg:mt-10 px-4 lg:px-10 left-0 right-0" data-navbar-root>
+  <nav class="sticky top-0 w-full py-2 lg:py-3 bg-primary-panther/20 lg:shadow-[0px_0px_20px_0px_rgba(255,255,255,0.15)_inset] backdrop-blur-[25px] rounded-lg border border-white/10">
+    <div class="relative w-full overflow-visible">
+      <div class="flex items-center justify-between lg:px-6">
+        <a href="/" class="text-primary-beige font-semibold tracking-wide">NUMEN</a>
+
+        <!-- Desktop -->
+        <div class="hidden lg:flex items-center gap-5">
+          <ul class="flex items-center gap-2">
+            <li class="text-primary-beige/70 hover:text-primary-beige hover:bg-basics-white/10 py-1 px-3 rounded-md text-base font-light">
+              <button
+                type="button"
+                class="flex items-center"
+                data-navbar-toggle="services"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+              >
+                <span>Services</span>
+                <span class="ml-2 text-xs">▼</span>
+              </button>
+            </li>
+
+            <li class="text-primary-beige/70 hover:text-primary-beige hover:bg-basics-white/10 py-1 px-3 rounded-md text-base font-light">
+              <button
+                type="button"
+                class="flex items-center"
+                data-navbar-toggle="company"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+              >
+                <span>Company</span>
+                <span class="ml-2 text-xs">▼</span>
+              </button>
+            </li>
+
+            <li class="text-primary-beige/70 hover:text-primary-beige hover:bg-basics-white/10 py-1 px-3 rounded-md text-base font-light">
+              <a href="/team" aria-current={isActive("/team") ? "page" : undefined}>Team</a>
+            </li>
+
+            {links.map((l) => {
+              const active = isActive(l.href);
+              return (
+                <li class="text-primary-beige/70 hover:text-primary-beige hover:bg-basics-white/10 py-1 px-3 rounded-md text-base font-light">
+                  <a href={l.href} aria-current={active ? "page" : undefined}>
+                    {l.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div class="ml-3 hidden lg:flex items-center gap-3 text-white">
+            <a href="https://city-of-mesa.numinia.xyz" target="_blank" rel="noreferrer">
+              <button
+                type="button"
+                class="px-5 py-2 bg-basics-white/10 border-basics-white/20 rounded border-tl border hover:bg-basics-white/30"
+              >
+                Try a demo
+              </button>
+            </a>
+
+            <button
+              type="button"
+              class="px-5 py-2 bg-primary-coralRed rounded hover:bg-primary-darkRed form-toggle-button"
+            >
+              Talk to us
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <details class="lg:hidden group">
+          <summary class="list-none p-2 rounded-lg hover:bg-white/10 cursor-pointer text-primary-beige">☰</summary>
+
+          <div class="mt-3 px-4 py-4 bg-primary-panther/95 backdrop-blur-[25px] border-t border-b border-white/10 shadow-lg rounded-lg">
+            <ul class="flex flex-col gap-2 w-full text-primary-beige">
+              <li>
+                <a
+                  href="/services"
+                  class:list={[
+                    "block w-full py-2 hover:text-primary-coralRed transition-colors",
+                    isActive("/services") && "text-primary-coralRed",
+                  ]}
+                >
+                  Services
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/team"
+                  class:list={[
+                    "block w-full py-2 hover:text-primary-coralRed transition-colors",
+                    isActive("/team") && "text-primary-coralRed",
+                  ]}
+                >
+                  Team
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/manifesto"
+                  class:list={[
+                    "block w-full py-2 hover:text-primary-coralRed transition-colors",
+                    isActive("/manifesto") && "text-primary-coralRed",
+                  ]}
+                >
+                  Manifesto
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/blog"
+                  class:list={[
+                    "block w-full py-2 hover:text-primary-coralRed transition-colors",
+                    isActive("/blog") && "text-primary-coralRed",
+                  ]}
+                >
+                  Blog
+                </a>
+              </li>
+              {links.map((l) => {
+                const active = isActive(l.href);
+                return (
+                  <li>
+                    <a
+                      href={l.href}
+                      aria-current={active ? "page" : undefined}
+                      class:list={[
+                        "block w-full py-2 hover:text-primary-coralRed transition-colors",
+                        active && "text-primary-coralRed",
+                      ]}
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div class="mt-4 flex flex-col gap-2">
+              <a href="https://city-of-mesa.numinia.xyz" target="_blank" rel="noreferrer" class="block w-full">
+                <button
+                  type="button"
+                  class="w-full px-5 py-2 bg-basics-white/10 border-basics-white/20 rounded border-tl border hover:bg-basics-white/30 text-white"
+                >
+                  Try a demo
+                </button>
+              </a>
+
+              <button
+                type="button"
+                class="w-full px-5 py-2 bg-primary-coralRed rounded hover:bg-primary-darkRed form-toggle-button text-white"
+              >
+                Talk to us
+              </button>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Dropdown overlay -->
+      <div
+        class="hidden items-stretch justify-between gap-4 xl:gap-6 mt-6 px-4 xl:px-10 toggle-div bg-primary-panther/95 backdrop-blur-[25px] border-t border-b border-white/10 z-50 max-h-[80vh] overflow-y-auto overflow-x-hidden fixed inset-x-0"
+        role="dialog"
+        aria-modal="false"
+        aria-hidden="true"
+        data-navbar-dropdown
+      >
+        <button
+          type="button"
+          class="absolute top-4 right-4 lg:top-6 lg:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-basics-white/10 hover:bg-basics-white/20 border border-white/10 transition-all duration-200 z-50 group"
+          aria-label="Close menu"
+          data-navbar-close
+        >
+          <svg class="w-5 h-5 text-white transform group-hover:rotate-90 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div class="w-full lg:pt-8 pb-8">
+          <!-- Services -->
+          <div class="flex flex-col lg:flex-row w-full gap-4 lg:gap-6" data-navbar-services>
+            <a class="relative w-full flex-1" href="/services/engagement">
+              <div class="flex flex-col justify-between items-start gap-2 lg:gap-3 h-full p-4 lg:p-6 bg-basics-white/5 hover:bg-basics-white/10 border border-white/10 rounded-lg transition-colors duration-200">
+                <div class="flex flex-col z-10 w-full">
+                  <p class="text-sm lg:text-base font-light leading-[1.2] text-[rgba(255,255,255,0.40)] uppercase font-IBMPlexMono mt-2 lg:mt-3">ENGAGE</p>
+                  <p class="text-lg lg:text-xl xl:text-2xl font-medium leading-[1.2] tracking-[-0.72px] text-white mt-2 lg:mt-3">Engagement service</p>
+                  <p class="mt-2 lg:mt-3 text-xs lg:text-sm xl:text-base font-normal text-[rgba(255,255,255,0.65)] line-clamp-3">
+                    We develop immersive 3D environments that transform how your organization retains talent.
+                  </p>
+                </div>
+                <div class="mt-4 lg:mt-6 z-10 py-2 px-4 lg:py-3 lg:px-6 text-white bg-basics-white/20 rounded hover:bg-basics-white/30 transition-colors duration-200 text-sm lg:text-base">
+                  Read More
+                </div>
+              </div>
+            </a>
+
+            <a class="relative w-full flex-1" href="/services/training">
+              <div class="flex flex-col justify-between items-start gap-2 lg:gap-3 h-full p-4 lg:p-6 bg-basics-white/5 hover:bg-basics-white/10 border border-white/10 rounded-lg transition-colors duration-200">
+                <div class="flex flex-col z-10 w-full">
+                  <p class="text-sm lg:text-base font-light leading-[1.2] text-[rgba(255,255,255,0.40)] uppercase font-IBMPlexMono mt-2 lg:mt-3">TRAINING</p>
+                  <p class="text-lg lg:text-xl xl:text-2xl font-medium leading-[1.2] tracking-[-0.72px] text-white mt-2 lg:mt-3">Immersive 3D environments</p>
+                  <p class="mt-2 lg:mt-3 text-xs lg:text-sm xl:text-base font-normal text-[rgba(255,255,255,0.65)] line-clamp-3">
+                    Create immersive 3D environments that strengthen your organization's talent retention, values, and culture.
+                  </p>
+                </div>
+                <div class="mt-4 lg:mt-6 z-10 py-2 px-4 lg:py-3 lg:px-6 text-white bg-basics-white/20 rounded hover:bg-basics-white/30 transition-colors duration-200 text-sm lg:text-base">
+                  Read More
+                </div>
+              </div>
+            </a>
+
+            <a class="relative w-full flex-1" href="/services/experience">
+              <div class="flex flex-col justify-between items-start gap-2 lg:gap-3 h-full p-4 lg:p-6 bg-basics-white/5 hover:bg-basics-white/10 border border-white/10 rounded-lg transition-colors duration-200">
+                <div class="flex flex-col z-10 w-full">
+                  <p class="text-sm lg:text-base font-light leading-[1.2] text-[rgba(255,255,255,0.40)] uppercase font-IBMPlexMono mt-2 lg:mt-3">EXPERIENCE</p>
+                  <p class="text-lg lg:text-xl xl:text-2xl font-medium leading-[1.2] tracking-[-0.72px] text-white mt-2 lg:mt-3">Tailored gamified experiences</p>
+                  <p class="mt-2 lg:mt-3 text-xs lg:text-sm xl:text-base font-normal text-[rgba(255,255,255,0.65)] line-clamp-3">
+                    We design fully customized gamified experiences to meet specific business objectives.
+                  </p>
+                </div>
+                <div class="mt-4 lg:mt-6 z-10 py-2 px-4 lg:py-3 lg:px-6 text-white bg-basics-white/20 rounded hover:bg-basics-white/30 transition-colors duration-200 text-sm lg:text-base">
+                  Read More
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Company -->
+          <div class="w-full mt-4 lg:mt-6 hidden" data-navbar-company>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              <a class="w-full" href="/team">
+                <div class="w-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg transition-all duration-200">
+                  <p class="text-lg 3xl:text-xl font-medium tracking-tight text-left text-white">Team</p>
+                  <p class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">People behind Numen.</p>
+                </div>
+              </a>
+
+              <a class="w-full" href="/manifesto">
+                <div class="w-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg transition-all duration-200">
+                  <p class="text-lg 3xl:text-xl font-medium tracking-tight text-left text-white">Manifesto</p>
+                  <p class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">Values, pillars and principles.</p>
+                </div>
+              </a>
+
+              <a class="w-full" href="/blog">
+                <div class="w-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg transition-all duration-200">
+                  <p class="text-lg 3xl:text-xl font-medium tracking-tight text-left text-white">Blog</p>
+                  <p class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">Coming soon.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Dropdown overlay -->
+    </div>
+  </nav>
+
+  <script type="module" src={navbarDropdownUrl}></script>
+</header>

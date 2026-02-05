@@ -1,22 +1,53 @@
 ---
+import "../../styles/global.css";
+
 import Navbar from "./Navbar.astro";
 import Footer from "./Footer.astro";
 
-const { title = "Numen Games", description = "" } = Astro.props;
+type Props = {
+  title?: string;
+  description?: string;
+  lang?: string;
+};
+
+const {
+  title = "Numen Games",
+  description = "",
+  lang = "en",
+} = Astro.props as Props;
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+
+    {description ? <meta name="description" content={description} /> : null}
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+
+    <!-- Basic rendering hints -->
+    <meta name="color-scheme" content="dark light" />
   </head>
 
-  <body class="bg-neutral-950 text-white">
+  <body class="min-h-screen antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-primary-panther focus:px-4 focus:py-2 focus:text-primary-beige focus:shadow"
+    >
+      Skip to content
+    </a>
+
     <Navbar />
-    <main class="min-h-screen">
+
+    <main id="main" class="min-h-screen">
       <slot />
     </main>
+
     <Footer />
   </body>
 </html>

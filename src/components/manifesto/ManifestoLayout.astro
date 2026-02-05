@@ -1,0 +1,119 @@
+---
+import LayoutShell from "../layout/LayoutShell.astro";
+
+type Header = {
+  eyebrow: string;   // "[MANIFESTO]"
+  title: string;     // "Dream without limits"
+  imageSrc: string;  // "/assets/hero-culture.webp"
+  imageAlt?: string;
+};
+
+type Section = {
+  title?: string;
+  content?: string[];
+  bullets?: string[];
+};
+
+type Props = {
+  title: string; // <title> del documento
+  description?: string;
+  header: Header;
+  sections: Section[];
+};
+
+const { title, description = "", header, sections } = Astro.props as Props;
+---
+
+<LayoutShell title={title} description={description}>
+  <!-- Hero -->
+  <section class="px-4 lg:px-10 pt-28 lg:pt-32">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+        <div>
+          <p class="font-IBMPlexMono text-xs tracking-[0.25em] text-primary-beige/60">
+            {header.eyebrow}
+          </p>
+
+          <h1 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-medium tracking-[-0.03em] text-primary-beige">
+            {header.title}
+          </h1>
+
+          <slot name="intro" />
+        </div>
+
+        <div class="w-full">
+          <div class="relative overflow-hidden rounded-lg border border-white/10 bg-white/5">
+            <img
+              src={header.imageSrc}
+              alt={header.imageAlt ?? "Manifesto hero"}
+              class="w-full h-[260px] sm:h-[340px] lg:h-[420px] object-cover"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 lg:mt-16 border-t border-white/10"></div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="px-4 lg:px-10 py-14 lg:py-18">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-8">
+          {sections.map((s) => (
+            <article class="py-10 border-b border-white/10 last:border-b-0">
+              {s.title ? (
+                <h2 class="text-2xl sm:text-3xl font-medium tracking-[-0.02em] text-primary-beige">
+                  {s.title}
+                </h2>
+              ) : null}
+
+              {s.content?.length ? (
+                <div class={s.title ? "mt-5 space-y-5" : "space-y-5"}>
+                  {s.content.map((p) => (
+                    <p class="text-primary-beige/70 leading-relaxed">{p}</p>
+                  ))}
+                </div>
+              ) : null}
+
+              {s.bullets?.length ? (
+                <ul class="mt-6 space-y-3 list-disc pl-5 text-primary-beige/70">
+                  {s.bullets.map((b) => (
+                    <li class="leading-relaxed">{b}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </article>
+          ))}
+        </div>
+
+        <aside class="lg:col-span-4">
+          <div class="sticky top-28 rounded-lg border border-white/10 bg-white/5 p-6">
+            <p class="font-IBMPlexMono text-xs tracking-[0.25em] text-primary-beige/60">
+              [INDEX]
+            </p>
+
+            <ul class="mt-4 space-y-2">
+              {sections
+                .filter((s) => !!s.title)
+                .map((s) => (
+                  <li class="text-sm text-primary-beige/70">{s.title}</li>
+                ))}
+            </ul>
+
+            <div class="mt-6 pt-6 border-t border-white/10">
+              <a
+                href="/contact"
+                class="inline-flex items-center justify-center w-full rounded-md bg-primary-coralRed px-4 py-2 text-sm font-medium text-white hover:bg-primary-darkRed transition-colors"
+              >
+                Talk to us
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</LayoutShell>
